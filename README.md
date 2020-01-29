@@ -1,5 +1,10 @@
 # vaccination_timeline 
 
+# Objective 
+- To make a tool that helps improve the comprehension and aid in remembering the schedule of vaccinations for children in Haiti
+- To increase the percentage of children that are vaccinated in Haiti.
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.20.
 
 ## Development server
