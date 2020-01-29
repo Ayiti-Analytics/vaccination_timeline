@@ -1,0 +1,96 @@
+<div class="container m-auto">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Accueil</a></li>
+        <li class="breadcrumb-item"><a href="#">Vaccine</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Vaccin details</li>
+      </ol>
+    </nav>
+    <div class="col-12 m-auto" *ngIf="_vaccine | async as vacc" >
+      <div class="form-row">
+        <div class="form-group col-md-12 current-size">
+          <em><label for="vaccineNameId">Nom du vaccin</label></em>
+          <h4>{{vacc.vaccineName}}</h4>
+        </div>
+        <div class="form-group col-md-12 current-size">
+          <em> <label for="descriptionId">Description</label></em>
+          <p><b>{{vacc.description}}</b></p>
+        </div>
+  
+      </div>
+      
+      <div class="card mb-1 mt-1" *ngFor="let item of doseList; let i=index">
+        <div class="card-header">
+          {{"Dose "+ (i+1)}}
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Description des {{vacc.dose}} dose(s) du vaccin {{vacc.vaccineName}}</h5>
+          <p class="card-text">Merci de les completer soigneusement.</p>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="doseNumber{{i+1}}">Numero dose</label>
+              <input type="number" class="form-control" id="doseNumber{{i+1}}" placeholder="Numero dose"[(ngModel)]="item.doseNumber">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="minWindowWeek{{i+1}}">min fenetre en sem</label>
+              <input type="number" min="0" class="form-control current-size" [(ngModel)]="item.minWindowWeek">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="maWindowWeek{{i+1}}">max fenetre en sem</label>
+              <input type="number" min="0" class="form-control current-size" id= "maxWindowWeek{{i+1}}" [(ngModel)]="item.maxWindowWeek">          
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="doseNumber{{i+1}}">Apres le vaccin</label>
+              
+              <select class="form-control current-size" name="apresVaccin" #apresVaccin  [(ngModel)]="item.afterVaccineName">
+                <option [value] ='0' selected="true">Non applicable</option>
+                <option *ngFor="let stream of items | async as list" [(value)]="stream.id">{{stream.vaccineName}}</option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="minWindowWeek{{i+1}}">Apres la dose</label>
+              <select class="form-control current-size" [(ngModel)]="item.afterVaccineDoseId">
+                <option [value] ='0' selected="true">Non applicable</option>
+                <option *ngFor="let val of doseList" [value]="val.doseNumber">{{val.doseNumber}}</option>
+              </select>
+            </div>
+            
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="site{{i+1}}">site</label>
+              <input type="Text" min="0" class="form-control current-size" id="site{{i+1}}" [(ngModel)]="item.site">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="dose{{i+1}}">Dose</label>
+              <input type="Text" min="0" class="form-control current-size"  id ="dose{{i+1}}" [(ngModel)]="item.dose">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="voie{{i+1}}">Voie</label>
+              <input type="Text" min="0" class="form-control current-size"  id ="voie{{i+1}}" [(ngModel)]="item.voie">
+            </div>
+            
+          </div>
+         
+       </div>
+      </div>
+     
+      <nav>
+        <div class="row mt-1 mb-1 ">
+  
+          <div class="col-4 mr-2">
+            <a class="btn btn-primary" [routerLink]="['/vaccines']"  ><i
+                class="fa fa-arrow-alt-circle-left"></i>&nbsp;Precedant</a>&nbsp;&nbsp;
+            <a type="submit "  class="btn btn-danger" [routerLink]="['/vaccines', 'new-vaccine',id]"
+            routerLinkActive="router-link-active"> <i class="fa fa-edit"></i> &nbsp;Editer</a>
+  
+          </div>
+  
+        </div>
+      </nav>
+    </div>
+  
+</div>

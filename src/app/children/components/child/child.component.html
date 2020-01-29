@@ -1,0 +1,260 @@
+<div class="container m-auto">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Accueil</a></li>
+            <li class="breadcrumb-item"><a href="#">Enfants</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Nouveau enfant</li>
+        </ol>
+    </nav>
+    <div class="col-10 m-auto">
+        <form class="form" [formGroup]="childFormGroup">
+
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h2 class="mb-0 current-size">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseMultiple">
+
+                                Informations démographiques de l'enfant
+                            </button>
+                        </h2>
+                    </div>
+
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-4 current-size">
+                                    <label for="firstnameId">Prénom de l'enfant</label>
+                                    <input type="text" class="form-control current-size" id="firstnameId" placeholder="First name" formControlName="firstname">
+                                </div>
+                                <div class="form-group col-md-4 current-size">
+                                    <label for="middleNameId">Pseudo</label>
+                                    <input type="text" class="form-control current-size" id="middleNameId" placeholder="Middle Name" formControlName='middleName'>
+                                </div>
+                                <div class="form-group col-md-4 current-size">
+                                    <label for="LastnameId">Nom</label>
+                                    <input type="text" class="form-control current-size" id="LastnameId" placeholder="Lastname" formControlName='lastname'>
+                                </div>
+
+                            </div>
+                            <div class="form-row">
+
+                                <div class="form-group col-md-6 current-size">
+                                    <label for="DNNId">Date de naissance</label>
+                                    <input type="date" class="form-control current-size" id="DNNId" formControlName="dateOfBirth">
+                                </div>
+                                <div class="form-group col-md-6 current-size">
+                                    <label for="GenderId">Sexe</label>
+                                    <select class="form-control current-size" formControlName="gender">
+                                        <option>Choisir 1</option>
+                                        <option value='0'>Masculin</option>
+                                        <option value='1'>Feminin</option>
+                                        <option value='2'>Inconnu</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="form-row">
+
+                                <div class="form-group col-md-6 current-size">
+                                    <label for="BirthPlaceId">Lieu de naissance</label>
+                                    <select class="form-control current-size" formControlName="birthPlace">
+                                        <option *ngFor="let item of communes | async as list"[value]="item.adm2_en">{{item.adm2_en}}</option>
+                                    </select>
+
+                                </div>
+                                <div class="form-group col-md-6 current-size">
+                                    <label for="GenderId">Pays de naissance</label>
+                                    <select class="form-control current-size" formControlName="country">
+                                        <option value='0'>Haiti</option>
+
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <div class="form-row">
+
+                                <div class="form-group col-md-4 current-size">
+                                    <label for="BirthPlaceId"># Grossesse</label>
+                                    <select class="form-control current-size" formControlName="pregnencyNumber">
+                                        <option value='1'>1ere Grossesse</option>
+                                        <option value='2'>2eme Grosesse</option>
+                                        <option value='3'>3eme Grosesse</option>
+                                        <option value='4'>4eme Grosesse</option>
+                                        <option value='5'>5eme Grossesse</option>
+                                        <option value='>5'>plus que 5 Grossesse</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-4 current-size">
+                                    <label for="WeightId">Poids(Kg)</label>
+                                    <input type="number" class="form-control current-size" id="WeightId" formControlName="weight">
+                                </div>
+                                <div class="form-group col-md-4 current-size">
+                                    <label for="HeightId">Taille(cm)</label>
+                                    <input type="number" class="form-control current-size" id="HeightId" formControlName="height">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+
+                                Informations supplémentaires sur la mère
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-6 current-size">
+                                    <label for="firstnameId">Prénom</label>
+                                    <input type="text" class="form-control current-size" id="motherFirstnameId" placeholder="Mother's First name" formControlName="motherFirstname">
+                                </div>
+                                <div class="form-group col-md-6 current-size">
+                                    <label for="motherLastnameId">Nom</label>
+                                    <input type="text" class="form-control current-size" id="motherLastnameId" placeholder="Mother's Lastname" formControlName="motherLastname">
+                                </div>
+                            </div>
+                            <div class="form-row">
+
+                                <div class="form-group col-md-6 current-size">
+                                    <label for="MotherDNNId">Date de naissance</label>
+                                    <input type="date" class="form-control current-size" id="MotherDNNId" formControlName="motherDateOfBirth">
+                                </div>
+                                <div class="form-group col-md-6 current-size">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="gridCheck" formControlName="motherIsDead">
+                                        <label class="form-check-label" for="gridCheck">
+                                            Est morte
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingThree">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+
+                                Tuteur(trice) légal(e)
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-6 current-size">
+                                    <label for="guardianFirstnameId">Prénom</label>
+                                    <input type="text" class="form-control current-size" id="guardianFirstnameId" placeholder="First name" formControlName="guardianFirstname">
+                                </div>
+                                <div class="form-group col-md-6 current-size">
+                                    <label for="guardianLastnameId">Nom</label>
+                                    <input type="text" class="form-control current-size" id="guardianLastnameId" placeholder="Lastname" formControlName="guardianLastname">
+                                </div>
+
+                            </div>
+                            <div class="form-row">
+
+                                <div class="form-group col-md-6 current-size">
+                                    <label for="occupationId">Occupation</label>
+                                    <input type="phone" class="form-control current-size" id="occupationId" formControlName="guardianOccupation">
+                                </div>
+                                <div class="form-group col-md-6 current-size">
+                                    <label for="GenderId">Type de rélation</label>
+                                    <select id="GenderId" class="form-control current-size" formControlName="relationShip">
+                                        <option value="Mère">Mère</option>
+                                        <option value='Père'>Père</option>
+                                        <option value='Soeur'>Soeur</option>
+                                        <option value='Oncle'>Oncle</option>
+                                        <option value='Tante'>Tante</option>
+                                        <option value='Parrain'>Parrain</option>
+                                        <option value='Marraine'>Marraine</option>
+                                        <option value='Grand Mère'>Grand Mère</option>
+                                        <option value='Grand Père'>Grand Père</option>
+                                        <option value='Cousin'>Cousin</option>
+                                        <option value='Cousine'>Cousine</option>
+                                        <option value='Autre'>Autre</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="form-row">
+
+                                <div class="form-group col-md-4 current-size">
+                                    <label for="guardianCityId">Commune</label>
+                                    <select class="current-size form-control" id="guardianCityId" formControlName="guardianCity" [(value)]="model" (change)="getAllSecCom()">
+                                        <option selected>Select one</option>
+                                        <option *ngFor="let item of communes | async as list"[value]="item.adm2_en">{{item.adm2_en}}</option>
+                                    </select>
+
+                                </div>
+                                <div class="form-group col-md-4 current-size ">
+                                    <label for="guardianSecId">Section Com.</label>
+                                    <select class="current-size form-control" id="guardianSecId" formControlName="guardianSec">
+                                        <option selected> Select one</option>
+                                        <option *ngFor="let item of secCommunes | async as list"[value]="item.adm3_en">{{item.adm3_en}}</option>
+                                   </select>
+                                </div>
+                                <div class="form-group col-md-4 current-size ">
+                                    <label for="guardianCountryId ">Pays</label>
+                                    <select class="current-size form-control" id="guardianCountryId" formControlName="guardianCountry">
+                                        <option value = "Haiti">Haiti</option>
+                                   </select>
+                                </div>
+                            </div>
+                            <div class="form-row ">
+
+                                <div class="form-group col-md-12 current-size ">
+                                    <label for="guardianAddressId">Adresse</label>
+                                    <textarea class="form-control " id="guardianAddressId" cols="10 " rows="3 " formControlName="guardianAddress"></textarea>
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="form-row ">
+
+                                <div class="form-group col-md-4 current-size ">
+                                    <label for="guardianphoneNumber ">Téléphone 1</label>
+                                    <input type="text" id="guardianphoneNumber" class="form-control current-size" formControlName="guardianphoneNumber">
+                                </div>
+                                <div class="form-group col-md-4 current-size ">
+                                    <label for="guardianphoneNumber2 ">Téléphone 2</label>
+                                    <input type="phone" id="guardianphoneNumber2" class="form-control current-size" formControlName="guardianphoneNumber2">
+                                </div>
+                                <div class="form-group col-md-4 current-size ">
+                                    <label for="emailAddressId ">Adresse email</label>
+                                    <input type="email" id="emailAddressId" class="form-control current-size " placeholder="Email address" formControlName="guardianEmailAddress">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <nav>
+            <div class="row mt-1 mb-1 ">
+                <div class="col-2">
+                    <button type="submit" class="btn btn-primary " (click)=" saveChild()">Sauvegarder</button>
+                </div>
+                <div class="col-1">
+                    <button type="submit " [routerLink]="['/children']" class="btn btn-danger">Cancel</button>
+                </div>
+
+            </div>
+        </nav>
+
+
+    </div>
+ 

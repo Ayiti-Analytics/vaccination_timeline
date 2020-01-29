@@ -1,0 +1,86 @@
+<div class="container m-auto">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Accueil</a></li>
+            <li class="breadcrumb-item"><a href="#">Enfants</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Nouveau enfant</li>
+        </ol>
+    </nav>
+    <div class="row col-10 m-auto">
+        <div class="col-2 ">
+            <ngx-qrcode qrc-element-type="url" class="text-danger p-0" [qrc-value]="ngxQrcode2">Lets go</ngx-qrcode>
+        </div>
+        <div class="col-8">
+            <h5>Yvel Marcelin</h5>
+            <p>
+                Né(e) le <code>24 Mars 2019</code> à <code> Port-au-Prince</code> <code> 4 ème</code> enfant de la mère <code>Yolande Marcelin</code> domiciliée à <code>Port-au-Prince</code> section communale de <code>2eme Section Turgeau</code> vivante.
+                De Tuteur(trice) Legal(e) <code>Yolande Marcelin</code> domicilié(e) à <code>Delmas</code> section communale <code>12 Deas</code> à l'adresse <code>34 Rue peilcan # 15</code> joignable au numéro de téléphone <code>4345345343</code> et
+                à l'adresse email <code>email@gmail.com</code>
+            </p>
+        </div>
+        <div class="col-2">
+            <div class="row p-1">
+                <button class="btn btn-primary">Nouvelle visite</button>
+            </div>
+            <div class="row p-1">
+                <button class="btn btn-warning">Ajouter un vaccin</button>
+            </div>
+            <div class="row p-1">
+                <button class="btn btn-primary">Notifier tuteur</button>
+            </div>
+            <div class="row p-1">
+                <button class="btn btn-primary">Voir Coordonnées géographiques</button>
+            </div>
+
+        </div>
+
+
+    </div>
+    <div class="row col-10 m-auto">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="/children/child-details/#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Home</a>
+                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="/children/child-details/#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</a>
+                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="/children/child-details/#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+                <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+                <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                <!------ Include the above in your HEAD tag ---------->
+
+                <div class="container mt-5 mb-5">
+                    <div class="row">
+                        <div class="col-md-6 offset-md-3">
+                            <h4>Latest News</h4>
+                            <ul class="timeline">
+                                <li>
+                                    <a target="_blank" href="https://www.totoprayogo.com/#">New Web Design</a>
+                                    <a href="#" class="float-right">21 March, 2014</a>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque diam non nisi semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis ligula in sodales vehicula....</p>
+                                </li>
+                                <li>
+                                    <a href="#">21 000 Job Seekers</a>
+                                    <a href="#" class="float-right">4 March, 2014</a>
+                                    <p>Curabitur purus sem, malesuada eu luctus eget, suscipit sed turpis. Nam pellentesque felis vitae justo accumsan, sed semper nisi sollicitudin...</p>
+                                </li>
+                                <li>
+                                    <a href="#">Awesome Employers</a>
+                                    <a href="#" class="float-right">1 April, 2014</a>
+                                    <p>Fusce ullamcorper ligula sit amet quam accumsan aliquet. Sed nulla odio, tincidunt vitae nunc vitae, mollis pharetra velit. Sed nec tempor nibh...</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-muted mt-5 mb-5 text-center small">by : <a class="text-muted" target="_blank" href="http://totoprayogo.com">totoprayogo.com</a></div>
+
+            </div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+<div class="container m-auto">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item current-size"><a href="#">Accueil</a></li>
+            <li class="breadcrumb-item current-size"><a href="#">Enfants</a></li>
+            <li class="breadcrumb-item active current-size" aria-current="page">Liste des enfants enrôllés</li>
+            <input class="form-control ml-auto current-size col-4" type="search" placeholder="Search" aria-label="Search">
+
+
+            <div class="col-4"><button class="btn btn-primary positon-left current-size" [routerLink]="['/children/child']">Add a new child</button></div>
+
+        </ol>
+
+    </nav>
+    <table class="table table-hover m-2 current-size">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prénom</th>
+                <th scope="col">Age</th>
+                <th scope="col">Date de naissance</th>
+                <th scope="col">Nom de la mère</th>
+                <th scope="col">Adresse</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of items | async">
+                <th scope="row">1</th>
+                <td>{{item.firstname}}</td>
+                <td>{{item.lastname}}</td>
+                <td>---</td>
+                <td>{{item.dateOfBirth}}</td>
+                <td>{{item.motherFirstname + " "+ item.motherLastname}}</td>
+                <td>{{item.address}} </td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                        <div class="btn-group" role="group">
+                            <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle current-size" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Actions
+                      </button>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item current-size" [routerLink]="['/schedules','calendar', item.id]" (click)="generateCalendar(item.id)"><i class="fas fa-calendar-check"></i> &nbsp; Générer calendrier</a>
+                                <a class="dropdown-item current-size" [routerLink]="['/schedules','calendar', item.id]"><i class="fas fa-binoculars"></i> &nbsp;Voir calendrier vaccin</a>
+                                <a class="dropdown-item current-size" [routerLink]="['/children','child', item.id]"><i class="fas fa-user-plus"></i> &nbsp;Editer informations enfant</a>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+
+            </tr>
+
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination current-size">
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">sur</a></li>
+            <li class="page-item"><a class="page-link" href="#">10</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>

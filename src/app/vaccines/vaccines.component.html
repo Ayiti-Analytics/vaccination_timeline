@@ -1,0 +1,30 @@
+<div class="container m-auto">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item current-size"><a href="#">Accueil</a></li>
+        <li class="breadcrumb-item current-size"><a href="#">Vaccins</a></li>
+        <li class="breadcrumb-item active current-size" aria-current="page">Liste des vaccins</li>
+        <input class="form-control ml-auto current-size col-4" type="search" placeholder="Search" aria-label="Search">
+
+
+        <div class="col-4"><button class="btn btn-primary positon-left current-size" [routerLink]="['/vaccines/new-vaccine']">Ajouter nouveau vaccin</button></div>
+
+    </ol>
+
+</nav>
+  <div class="m-auto row">
+    <div class="card mb-2 mr-1" style="width: 18rem;" *ngFor="let item of items | async as list">
+      <qrcode class="card-img-top red" [qrdata]="getQRCodeValue(item.id)" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+     
+      <div class="card-body">
+        <h5 class="card-title">{{item.vaccineName}}</h5>
+        <p class="card-text text-container">{{item.description | slice:0:50}} ...</p>
+        <p class="card-text text-container">Nombres de doses: <strong> {{item.dose}}</strong></p>
+        <button href="#" class="btn btn-primary"  [routerLink]="['/vaccines','vaccine-details', item.id]">plus d'infos</button>
+      </div>
+    </div>
+   
+  </div>
+
+
+</div>
