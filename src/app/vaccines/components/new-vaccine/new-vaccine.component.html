@@ -1,4 +1,7 @@
-<div class="container m-auto">
+
+  <div class="container col-9">
+
+
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="#">Accueil</a></li>
@@ -6,7 +9,8 @@
       <li class="breadcrumb-item active" aria-current="page">Nouveau vaccin</li>
     </ol>
   </nav>
-  <div class="col-10 m-auto" *ngIf="!headerHide">
+
+  <div class="col-12 m-auto" *ngIf="!headerHide">
     <form class="form" [formGroup]="form">
       <div class="form-row">
         <div class="form-group col-md-12 current-size">
@@ -163,3 +167,4 @@
       </div>
     </nav>
   </div>
+</div>
