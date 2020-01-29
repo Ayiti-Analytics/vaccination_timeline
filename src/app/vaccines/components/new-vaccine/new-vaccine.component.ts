@@ -39,7 +39,7 @@ export class NewVaccineComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(2),
-          Validators.maxLength(500)
+          Validators.maxLength(1024)
         ]
       ],
       dose: [

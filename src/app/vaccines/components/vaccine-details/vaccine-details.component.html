@@ -1,4 +1,4 @@
-<div class="container m-auto">
+<div class="container m-auto col-10">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Accueil</a></li>
@@ -19,61 +19,45 @@
   
       </div>
       
-      <div class="card mb-1 mt-1" *ngFor="let item of doseList; let i=index">
+      <div class="card mb-1 mt-1" >
         <div class="card-header">
           {{"Dose "+ (i+1)}}
         </div>
         <div class="card-body">
           <h5 class="card-title">Description des {{vacc.dose}} dose(s) du vaccin {{vacc.vaccineName}}</h5>
           <p class="card-text">Merci de les completer soigneusement.</p>
-          <div class="form-row">
-            <div class="form-group col-md-4">
-              <label for="doseNumber{{i+1}}">Numero dose</label>
-              <input type="number" class="form-control" id="doseNumber{{i+1}}" placeholder="Numero dose"[(ngModel)]="item.doseNumber">
-            </div>
-            <div class="form-group col-md-4">
-              <label for="minWindowWeek{{i+1}}">min fenetre en sem</label>
-              <input type="number" min="0" class="form-control current-size" [(ngModel)]="item.minWindowWeek">
-            </div>
-            <div class="form-group col-md-4">
-              <label for="maWindowWeek{{i+1}}">max fenetre en sem</label>
-              <input type="number" min="0" class="form-control current-size" id= "maxWindowWeek{{i+1}}" [(ngModel)]="item.maxWindowWeek">          
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="doseNumber{{i+1}}">Apres le vaccin</label>
-              
-              <select class="form-control current-size" name="apresVaccin" #apresVaccin  [(ngModel)]="item.afterVaccineName">
-                <option [value] ='0' selected="true">Non applicable</option>
-                <option *ngFor="let stream of items | async as list" [(value)]="stream.id">{{stream.vaccineName}}</option>
-              </select>
-            </div>
-            <div class="form-group col-md-6">
-              <label for="minWindowWeek{{i+1}}">Apres la dose</label>
-              <select class="form-control current-size" [(ngModel)]="item.afterVaccineDoseId">
-                <option [value] ='0' selected="true">Non applicable</option>
-                <option *ngFor="let val of doseList" [value]="val.doseNumber">{{val.doseNumber}}</option>
-              </select>
-            </div>
-            
-          </div>
-          
-          <div class="form-row">
-            <div class="form-group col-md-4">
-              <label for="site{{i+1}}">site</label>
-              <input type="Text" min="0" class="form-control current-size" id="site{{i+1}}" [(ngModel)]="item.site">
-            </div>
-            <div class="form-group col-md-4">
-              <label for="dose{{i+1}}">Dose</label>
-              <input type="Text" min="0" class="form-control current-size"  id ="dose{{i+1}}" [(ngModel)]="item.dose">
-            </div>
-            <div class="form-group col-md-4">
-              <label for="voie{{i+1}}">Voie</label>
-              <input type="Text" min="0" class="form-control current-size"  id ="voie{{i+1}}" [(ngModel)]="item.voie">
-            </div>
-            
-          </div>
+          <table class="table table-hover m-2 current-size">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Numero dose</th>
+                <th scope="col">Min semaine</th>
+                <th scope="col">Max semaine</th>
+                <th scope="col">Apres Vaccin</th>
+                <th scope="col">Dose</th>
+                <th scope="col">Site</th>
+                <th scope="col">Dose</th>
+                <th scope="col">Voie</th>
+  
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item2 of doseList; let i=index">
+                <th scope="row">{{i+1}}</th>
+                <td>{{item2.doseNumber}}</td>
+                <td>{{item2.minWindowWeek}}</td>
+                <td>{{item2.maxWindowWeek}}</td>
+                <td>{{item2.afterVaccineName}}</td>
+                <td>{{item2.afterVaccineDoseId}}</td>
+                <td>{{item2.dose}} </td>
+                <td>{{item2.site}} </td>
+                <td>{{item2.voie}} </td>
+  
+  
+              </tr>
+  
+            </tbody>
+          </table>
          
        </div>
       </div>
