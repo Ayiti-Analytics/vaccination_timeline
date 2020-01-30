@@ -1,0 +1,82 @@
+
+
+ <mat-card class="col-lg-10 col-md-12 col-sm-12  m-auto">
+   
+    <mat-card-content>
+   
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Accueil</a></li>
+              <li class="breadcrumb-item"><a href="#">Vaccines</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Nouveau vaccin</li>
+            </ol>
+          </nav>
+          <form class="form" [formGroup]="form">
+            <div class="form-row">
+              <div class="form-group col-md-12 current-size">
+                <label for="vaccineNameId">Nom du vaccin</label>
+                <input type="text" class="form-control current-size" id="vaccineNameId" placeholder="Nom du vaccin"
+                  formControlName="vaccineName">
+                  <div *ngIf="form.get('vaccineName').invalid && (form.get('vaccineName').dirty || form.get('vaccineName').touched)" class="alert alert-danger">
+                    <div *ngIf="form.get('vaccineName').hasError('required')">
+                         Le nom du vaccin requis.
+                    </div>
+                    <div *ngIf="form.get('vaccineName').hasError('minlength')">
+                        vaccineNamedoit avoir au moins 2 caracteres.
+                    </div>
+                    <div *ngIf="form.get('vaccineName').hasError('maxlength')">
+                        Le nom du vaccin doit avoir maximum 30 caracteres.
+                    </div>
+                </div>
+              </div>
+              <div class="form-group col-md-12 current-size">
+                <label for="descriptionId">Description</label>
+                <textarea name="" id="descriptionId" cols="30" rows="10" class="form-control"
+                  formControlName="description"></textarea>
+                  <div *ngIf="form.get('description').invalid && (form.get('description').dirty || form.get('description').touched)" class="alert alert-danger">
+                    <div *ngIf="form.get('description').hasError('required')">
+                        Description requis
+                    </div>
+                    <div *ngIf="form.get('description').hasError('minlength')">
+                        Description must have au moins 2 caracteres.
+                    </div>
+                    <div *ngIf="form.get('description').hasError('maxlength')">
+                        Description doit avoir maximum 1024 caracteres.
+                    </div>
+                </div>
+              </div>
+              <div class="form-group col-md-4 current-size">
+                <label for="doseId">Dose</label>
+                <input type="number" min="0" class="form-control current-size" id="doseId" placeholder="Dose"
+                  formControlName="dose">
+                  <div *ngIf="form.get('dose').invalid && (form.get('dose').dirty || form.get('dose').touched)" class="alert alert-danger">
+                    <div *ngIf="form.get('dose').hasError('required')">
+                        dose requis
+                    </div>
+                    <div *ngIf="form.get('dose').hasError('min')">
+                        La dose doit etre superieure a 1
+                    </div>
+                    <div *ngIf="form.get('dose').hasError('max')">
+                      La dose doit etre inferieur ou egale a 10
+                  </div>
+                    
+                </div>
+              </div>
+            </div>
+      
+            <hr />
+          </form>
+          <nav>
+            <div class="row mt-1 mb-1 ">
+      
+              <div class="col-lg-3 col-md-3 col-sm-12 mr-2">
+                <button type="submit " [routerLink]="['/vaccines']" class="btn btn-danger">Annuler</button>
+              &nbsp;&nbsp;
+                <button type="submit" class="btn btn-primary" [disabled] ="form.invalid" (click)=" save()">Sauvegarder <i
+                    class="fa fa-arrow-alt-circle-right"></i></button>
+              </div>
+            </div>
+          </nav>
+</mat-card-content>
+</mat-card>
+   

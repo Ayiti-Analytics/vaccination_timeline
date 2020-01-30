@@ -1,0 +1,76 @@
+<div class="col-lg-10 col-md-10 col-sm-12 m-auto" >
+   
+<form action="" class="form">
+        <div class="form-row">
+            <div class="form-group col-md-12 current-size">
+              <em><label for="vaccineNameId">Nom du vaccin</label></em>
+              <h4></h4>
+            </div>
+            <div class="form-group col-md-12 current-size">
+              <em> <label for="descriptionId">Description</label></em>
+              <p></p>
+            </div>
+      
+          </div>
+       
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="doseNumber{{i+1}}">Numero dose</label>
+            <input type="number" class="form-control" placeholder="Numero dose">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="minWindowWeek{{i+1}}">min fenetre en sem</label>
+            <input type="number" min="0" class="form-control current-size">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="maWindowWeek{{i+1}}">max fenetre en sem</label>
+            <input type="number" min="0" class="form-control current-size" >          
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="doseNumber{{i+1}}">Apres le vaccin</label>
+            
+            <select class="form-control current-size" name="apresVaccin" #apresVaccin   (change)="getDose(apresVaccin.value)">
+              <option [value] ='0' selected="true">Non applicable</option>
+              <option *ngFor="let stream of items | async as list" [(value)]="stream.id">{{stream.vaccineName}}</option>
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="minWindowWeek{{i+1}}">Apres la dose</label>
+            <select class="form-control current-size" >
+              <option [value] ='0' selected="true">Non applicable</option>
+              <option *ngFor="let val of doses" [value]="val.doseNumber">{{val.doseNumber}}</option>
+            </select>
+          </div>
+          
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="site{{i+1}}">site</label>
+            <input type="Text" min="0" class="form-control current-size">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="dose{{i+1}}">Dose</label>
+            <input type="Text" min="0" class="form-control current-size" >
+          </div>
+          <div class="form-group col-md-4">
+            <label for="voie{{i+1}}">Voie</label>
+            <input type="Text" min="0" class="form-control current-size" >
+          </div>
+          
+        </div>
+      </form>      
+      <nav>
+        <div class="row mt-1 mb-1 ">
+  
+          <div class="col-lg-3 col-md-3 col-sm-12 mr-2">
+            <button type="submit " [routerLink]="['/doses']" class="btn btn-danger">Annuler</button>
+          &nbsp;&nbsp;
+            <button type="submit" class="btn btn-primary" [disabled] ="form.invalid" (click)=" save()">Sauvegarder <i
+                class="fa fa-arrow-alt-circle-right"></i></button>
+          </div>
+        </div>
+      </nav>
+    </div>

@@ -10,6 +10,12 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import {ReactiveFormsModule,FormsModule} from '@angular/forms';
 import { QRCodeModule } from 'angularx-qrcode';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatCardModule} from '@angular/material/card'; 
+import {NgxPaginationModule} from 'ngx-pagination';  
+import { Ng2SearchPipeModule } from 'ng2-search-filter';  
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 @NgModule({
   declarations: [
@@ -21,11 +27,17 @@ import { QRCodeModule } from 'angularx-qrcode';
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    AngularFirestoreModule.enablePersistence(),
     AngularFireStorageModule,
     AngularFireAuthModule,
     FormsModule,
     ReactiveFormsModule,
-    QRCodeModule
+    QRCodeModule,
+    MatToolbarModule,
+    MatCardModule,
+    NgxPaginationModule,
+    Ng2SearchPipeModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

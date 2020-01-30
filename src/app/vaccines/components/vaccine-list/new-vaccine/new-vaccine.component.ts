@@ -1,10 +1,11 @@
-import { Component, OnInit, ChangeDetectionStrategy, ɵConsole } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { VaccineDetailsComponent } from '../vaccine-details/vaccine-details.component';
-import { Vaccine, Dose } from '../../models/vaccine'
-import { VaccineService } from '../../services/vaccine.service';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Vaccine, Dose } from 'src/app/vaccines/models/vaccine';
+import { VaccineService } from 'src/app/vaccines/services/vaccine.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
+import { duration } from 'moment';
 
 @Component({
   selector: 'app-new-vaccine',
@@ -23,7 +24,8 @@ export class NewVaccineComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private vaccineService: VaccineService,
     private activateRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private _snackBar: MatSnackBar
     ) {
     this.form = fb.group({
       vaccineName: [
@@ -123,12 +125,18 @@ export class NewVaccineComponent implements OnInit {
 
   save(){
    if(!this.id){
-    this.vaccineService.addVaccine(JSON.parse(JSON.stringify(this.vaccine))).then(values =>{
+    this.vaccineService.addVaccine(JSON.parse(JSON.stringify(this.form.value))).then(values =>{
+      this._snackBar.open('Sauvegarder fait avec succes','success', {
+        duration: 3000
+      });
       this.router.navigate(['vaccines']);
     });
    }else{
-     this.vaccineService.updateVaccine(this.id,this.vaccine).then(
+     this.vaccineService.updateVaccine(this.id,this.form.value).then(
        values =>{
+        this._snackBar.open('Mise a jour fait avec succes','success', {
+          duration: 3000
+        })
         this.router.navigate(['vaccines']);
        }
      );

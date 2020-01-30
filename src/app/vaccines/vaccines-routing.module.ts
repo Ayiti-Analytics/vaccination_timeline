@@ -2,16 +2,17 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { VaccinesComponent } from './vaccines.component';
-import { NewVaccineComponent } from './components/new-vaccine/new-vaccine.component';
-import { VaccineListComponent } from './components/vaccine-list/vaccine-list.component';
-import { VaccineDetailsComponent } from './components/vaccine-details/vaccine-details.component';
+import { NewVaccineComponent } from './components/vaccine-list/new-vaccine/new-vaccine.component';
+import { NewDoseComponent } from './components/new-dose/new-dose.component';
+
 
 const routes: Routes = [
   {path: '', component: VaccinesComponent },
-  {path: 'new-vaccine', component: NewVaccineComponent},
-  {path: 'new-vaccine/:id', component: NewVaccineComponent},
-  {path: 'vaccin-list', component: VaccineListComponent},
-  {path: 'vaccine-details/:id', component: VaccineDetailsComponent}
+  {path: 'new-vaccine', component: NewVaccineComponent },
+  {path: 'new-vaccine/:id', component: NewVaccineComponent },
+  {path: 'new-dose/:id', component: NewDoseComponent },
+  {path: 'new-dose', component: NewDoseComponent }
+
 
 ];
 

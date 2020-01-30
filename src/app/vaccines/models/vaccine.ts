@@ -9,6 +9,9 @@ export class Vaccine {
 
     }
 export class Dose {
+    id?: string;
+    idVaccine: string;
+    vaccineName: string;
     doseNumber: number;
     minWindowWeek: number;
     maxWindowWeek: number;
