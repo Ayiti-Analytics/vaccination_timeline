@@ -7,7 +7,9 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="#">Accueil</a></li>
-              <li class="breadcrumb-item"><a href="#">Vaccines</a></li>
+              <li class="breadcrumb-item current-size"><a [routerLink]="['/vaccines']" routerLinkActive="router-link-active" >Vaccins</a></li>
+              <li class="breadcrumb-item current-size"><a [routerLink]="['/vaccines/vaccine-list']" routerLinkActive="router-link-active" >Liste vaccins</a></li>
+
               <li class="breadcrumb-item active" aria-current="page">Nouveau vaccin</li>
             </ol>
           </nav>

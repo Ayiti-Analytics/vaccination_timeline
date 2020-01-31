@@ -5,8 +5,8 @@
    <nav aria-label="breadcrumb">
      <ol class="breadcrumb">
        <li class="breadcrumb-item current-size"><a href="#">Accueil</a></li>
-       <li class="breadcrumb-item current-size"><a href="#">Vaccins</a></li>
-       <li class="breadcrumb-item active current-size" aria-current="page">Liste des vaccins</li>
+       <li class="breadcrumb-item current-size"><a [routerLink]="['/vaccines']" routerLinkActive="router-link-active" >Vaccins</a></li>
+       <li class="breadcrumb-item active current-size" aria-current="page">Listes des doses</li>
       </ol>
  
    </nav>
@@ -35,7 +35,7 @@
            <td>{{item.minWindowWeek}} sem - {{item.maxWindowWeek}}  sem </td>
            <td>{{item.afterVaccineDoseId}}</td>
            <td>{{item.dose}} </td>
-           <td>{{item.site}}/ {{item.site}}</td>
+           <td>{{item.site}}/ {{item.dose}}</td>
           <td>
            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
              <div class="btn-group" role="group">
@@ -43,7 +43,7 @@
              Actions
            </button>
                  <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                     <a class="dropdown-item current-size" [routerLink]="['/vaccines','new-vaccine', item.id]"><i class="fas fa-edit"></i> &nbsp; Editer dose</a>
+                     <a class="dropdown-item current-size" [routerLink]="['/vaccines','new-dose', item.id]"><i class="fas fa-edit"></i> &nbsp; Editer dose</a>
                      
                    </div>
              </div>

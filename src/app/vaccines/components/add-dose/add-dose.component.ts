@@ -19,106 +19,107 @@ export class AddDoseComponent implements OnInit {
   vaccine: Vaccine;
   _vaccine: Observable<any>;
   id: any;
-  doses: Array<Dose>
+  doses: Observable<Dose[]>
   constructor(private fb: FormBuilder,
     private vaccineService: VaccineService,
     private activateRoute: ActivatedRoute,
     private router: Router,
-    private doseName: string,
-    private _snackBar: MatSnackBar
-    ) {
+    private _snackBar: MatSnackBar) {
    
-    // this.vaccine = new Vaccine();
-    // this.items = this.vaccineService.getVaccines();
-    // this.activateRoute.paramMap.subscribe(params => {
-    //   if (params.get('id')) {
-    //     this._vaccine = this.vaccineService.getVaccine(params.get('id'));
-    //     this.id = params.get('id');
-    //     console.log('Hewewrr '+this.id);
-    //   }
-    // });
-    // this.form = fb.group({
-    //   id: ['',],
-    //   idVaccine: [this.id,],
-    //   vaccineName: [
-    //     '',
-        
-    //   ],
-    //   doseNumber: [
-    //     '',
-    //     [
-    //       Validators.required,
-    //       Validators.minLength(2),
-    //       Validators.maxLength(15)
-    //     ]
-    //   ],
-    //   minWindowWeek: [
-    //     0,
-    //     [Validators.required,
-    //       Validators.min(0),
-         
-    //     ]
-    //   ],
-    //   maxWindowWeek: [
-    //     0,
-    //     [
-    //       Validators.min(0),
-         
-    //     ]
-    //   ],
-    //   afterVaccineId: [
-    //     'Non applicable',
-    //     [
-    //       Validators.required,
-         
-    //     ]
-    //   ],
-    //   afterVaccineName: [
-    //     'Non applicable',
-    //     [
-    //       Validators.required,
-         
-    //     ]
-    //   ],
-    //   afterVaccineDoseId: [
-    //     'Non applicable',
-    //     [
-    //       Validators.required,
-         
-    //     ]
-    //   ],
-    //   dose: [
-    //     '',
-    //     [
-    //       Validators.required,
-    //       Validators.minLength(2),
-    //       Validators.maxLength(30)
-    //     ]
-    //   ],
-    //   site: [
-    //     '',
-    //     [
-    //       Validators.required,
-    //       Validators.minLength(2),
-    //       Validators.maxLength(30)
-    //     ]
-    //   ],
+    this.vaccine = new Vaccine();
+    this.items = this.vaccineService.getVaccines();
+    this.doses =this.vaccineService.getDoseList();
+    this.activateRoute.paramMap.subscribe(params => {
+      if (params.get('id')) {
+        this._vaccine = this.vaccineService.getVaccine(params.get('id'));
+        this.id = params.get('id');
+        console.log('Hewewrr '+this.id);
+      }
+    });
+    this.form = fb.group({
       
-    //   voie: [
-    //     '',
-    //     [
-    //       Validators.required,
-    //       Validators.minLength(2),
-    //       Validators.maxLength(30)
-    //     ]
-    //   ],
+     
+      vaccineName: [
+        '',
+        
+      ],
+      doseNumber: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(15)
+        ]
+      ],
+      minWindowWeek: [
+        0,
+        [Validators.required,
+          Validators.min(0),
+         
+        ]
+      ],
+      maxWindowWeek: [
+        0,
+        [
+          Validators.min(0),
+         
+        ]
+      ],
+      
+       afterVaccineDoseId: [
+        'Non applicable',
+        [
+          Validators.required,
+         
+        ]
+      ],
+      dose: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(30)
+        ]
+      ],
+      site: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(30)
+        ]
+      ],
+      
+      voie: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(30)
+        ]
+      ],
 
 
-    // });
+    });
   }
   ngOnInit() {
-   
- 
+    this._vaccine.subscribe(value =>{
+      console.log(value);
+      this.vaccine = value;
+     
+    })
   }
+
+ 
+  save(){
+     this.form.controls.vaccineName.setValue(this.vaccine.vaccineName);
+     
+     this.vaccineService.addDose(JSON.parse(JSON.stringify(this.form.value))).then(values =>{
+       this._snackBar.open('Sauvegarde fait avec succes','success', {
+         duration: 3000
+       });
+       this.router.navigate(['vaccines']);
+     });
+    }
 
 }

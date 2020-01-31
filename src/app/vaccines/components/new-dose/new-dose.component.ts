@@ -18,6 +18,7 @@ export class NewDoseComponent implements OnInit {
   items: Observable<any[]>;
   vaccine: Vaccine;
   _vaccine: Observable<any>;
+  _dose: Observable<any>;
   doses: Observable<Dose[]>;
   id: any;
  
@@ -32,14 +33,23 @@ export class NewDoseComponent implements OnInit {
     this.doses =this.vaccineService.getDoseList();
     this.activateRoute.paramMap.subscribe(params => {
       if (params.get('id')) {
-        this._vaccine = this.vaccineService.getVaccine(params.get('id'));
         this.id = params.get('id');
+        let ids = (this.id as string).split('-')
+        
+        if(ids.length >1){
+          this._vaccine = this.vaccineService.getVaccine(ids[0]);
+          this._dose = this.vaccineService.getDose(this.id)
+        } else{
+          this._vaccine = this.vaccineService.getVaccine(this.id);
+        }
+        
+        this._dose
+      
         console.log('Hewewrr '+this.id);
       }
     });
     this.form = fb.group({
-      
-     
+          
       vaccineName: [
         '',
         
@@ -108,7 +118,10 @@ export class NewDoseComponent implements OnInit {
       console.log(value);
       this.vaccine = value;
      
-    })
+    });
+    this._dose.subscribe(value =>{
+this.form.patchValue(value);
+    });
   }
 
  

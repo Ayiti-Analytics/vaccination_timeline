@@ -5,7 +5,7 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Accueil</a></li>
-        <li class="breadcrumb-item"><a href="#">Vaccines</a></li>
+        <li class="breadcrumb-item current-size"><a [routerLink]="['/vaccines']" routerLinkActive="router-link-active" >Vaccins</a></li>
         <li class="breadcrumb-item active" aria-current="page">Nouvelle dose</li>
       </ol>
     </nav>
@@ -76,9 +76,7 @@
           </div>
         </div>
       </nav>
-   <pre>
-     {{doses |async}}
-   </pre>
+   
   </mat-card-content>
 </mat-card>
    

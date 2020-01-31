@@ -45,13 +45,5 @@ export class DoseListComponent implements OnInit {
     }
   
   }
-  getVaccineName(id: any){
-    let name = ''
-    this.vaccineService.getVaccine(id).subscribe(
-      (value:Vaccine ) =>{
-        name = value.vaccineName
-      }
-    );
-    return name;
-  }
+  
 }
