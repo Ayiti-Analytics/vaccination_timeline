@@ -14,6 +14,7 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 export class DoseListComponent implements OnInit {
   items: Observable<any[]>;
   public innerWidth: any;
+  p: any
   deviceInfo = null;
   isMobile: boolean = false;
   hide: any
