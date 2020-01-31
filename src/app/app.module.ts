@@ -15,6 +15,7 @@ import {MatCardModule} from '@angular/material/card';
 import {NgxPaginationModule} from 'ngx-pagination';  
 import { Ng2SearchPipeModule } from 'ng2-search-filter';  
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatCardModule,
     NgxPaginationModule,
     Ng2SearchPipeModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

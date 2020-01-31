@@ -44,14 +44,7 @@ export class NewVaccineComponent implements OnInit {
           Validators.maxLength(1024)
         ]
       ],
-      dose: [
-        '1',
-        [
-          Validators.min(0),
-          Validators.max(12),
-        ]
-      ]
-
+      
 
     });
     this.vaccine = new Vaccine();
@@ -75,69 +68,29 @@ export class NewVaccineComponent implements OnInit {
 
     })
   }
-  previousStep() {
-    this.headerHide = false;
-  }
-  nextStep() {
-    this.headerHide = true;
-    console.log(this.headerHide);
-    this.vaccine.vaccineName = this.form.controls.vaccineName.value;
-    this.vaccine.dose = this.form.controls.dose.value as number;
-    this.vaccine.description = this.form.controls.description.value;
-    let dose = this.form.controls.dose.value as number;
-    let length = this.vaccine.doseList.length
-    if (dose >= length) {
-      for (let i = 1; i <= dose - length; i++) {
-        let dose = new Dose();
-        dose.doseNumber = length + i;
-        this.vaccine.doseList.push(dose);
-        console.log('valeur de i : ', i);
-        console.log('valeur de doseList : ', this.vaccine.doseList);
-      }
-    } else {
-      for (let i = 0; i < length - dose; i++) {
 
-        this.vaccine.doseList.pop();
-        console.log('valeur de i: ', i);
-        console.log('valeur de doseList : ', this.vaccine.doseList);
-      }
-    }
 
-    this.headerHide = true;
-  }
-  newDose() {
-    let dose = new Dose();
-    dose.doseNumber = this.vaccine.doseList.length + 1
-    this.vaccine.doseList.push(dose);
-    this.form.controls.dose.setValue(this.vaccine.doseList.length)
-    this.vaccine.dose = this.vaccine.doseList.length
-  }
-  drop(item: Dose) {
-    let i = 0;
-    this.vaccine.doseList.splice(item.doseNumber-1,1)
-    this.vaccine.doseList.forEach(dose =>{
-      
-      dose.doseNumber =++i;
-    });
-    this.vaccine.dose = this.vaccine.doseList.length;
-    this.form.controls.dose.setValue(this.vaccine.dose);
-  }
+
 
   save(){
-   if(!this.id){
-    this.vaccineService.addVaccine(JSON.parse(JSON.stringify(this.form.value))).then(values =>{
-      this._snackBar.open('Sauvegarder fait avec succes','success', {
-        duration: 3000
+    
+   if(!this.id ){
+   
+      this.vaccineService.addVaccine(JSON.parse(JSON.stringify(this.form.value))).then(values =>{
+        this._snackBar.open('Sauvegarder fait avec succes','success', {
+          duration: 3000
+        });
+        this.router.navigate(['vaccines','vaccine-list']);
       });
-      this.router.navigate(['vaccines']);
-    });
+    
+    
    }else{
      this.vaccineService.updateVaccine(this.id,this.form.value).then(
        values =>{
         this._snackBar.open('Mise a jour fait avec succes','success', {
           duration: 3000
         })
-        this.router.navigate(['vaccines']);
+        this.router.navigate(['vaccines','vaccine-list']);
        }
      );
    }
@@ -145,10 +98,10 @@ export class NewVaccineComponent implements OnInit {
   }
   getDose(uid: any){
    
-    this.vaccineService.getVaccine(uid).subscribe( (value: Vaccine) =>{
+    this.vaccineService.getDoseByVaccin(uid).subscribe( (values: Array<Dose>) =>{
       this.doses = undefined;
-      if(value){
-        this.doses = value.doseList;
+      if(values){
+        this.doses = values;
       } 
     });
    

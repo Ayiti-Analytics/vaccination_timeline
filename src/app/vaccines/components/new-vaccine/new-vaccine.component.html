@@ -45,23 +45,7 @@
                     </div>
                 </div>
               </div>
-              <div class="form-group col-md-4 current-size">
-                <label for="doseId">Dose</label>
-                <input type="number" min="0" class="form-control current-size" id="doseId" placeholder="Dose"
-                  formControlName="dose">
-                  <div *ngIf="form.get('dose').invalid && (form.get('dose').dirty || form.get('dose').touched)" class="alert alert-danger">
-                    <div *ngIf="form.get('dose').hasError('required')">
-                        dose requis
-                    </div>
-                    <div *ngIf="form.get('dose').hasError('min')">
-                        La dose doit etre superieure a 1
-                    </div>
-                    <div *ngIf="form.get('dose').hasError('max')">
-                      La dose doit etre inferieur ou egale a 10
-                  </div>
-                    
-                </div>
-              </div>
+             
             </div>
       
             <hr />
@@ -69,10 +53,10 @@
           <nav>
             <div class="row mt-1 mb-1 ">
       
-              <div class="col-lg-3 col-md-3 col-sm-12 mr-2">
+              <div class="col-lg-6 col-md-6 col-sm-12 mr-2">
                 <button type="submit " [routerLink]="['/vaccines']" class="btn btn-danger">Annuler</button>
               &nbsp;&nbsp;
-                <button type="submit" class="btn btn-primary" [disabled] ="form.invalid" (click)=" save()">Sauvegarder <i
+                <button type="submit" class="btn btn-primary" [disabled] ="form.invalid" (click)="save()">Sauvegarder <i
                     class="fa fa-arrow-alt-circle-right"></i></button>
               </div>
             </div>

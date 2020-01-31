@@ -38,27 +38,38 @@
           </div>
         </div>
         <div class="form-row">
-              
-          <div class="form-group col-md-6">
-            <label>Apres la dose</label>
-            <select class="form-control current-size" formControlName="afterVaccineDoseId" >
-              <option selected="true">Non applicable</option>
-              <option *ngFor="let val of doses | async" >{{val.vaccineName}}-{{val.doseNumber}}</option>
+          <div class="form-group col-md-5">
+            <label for="doseNumber{{i+1}}">Apres le vaccin</label>
+            
+            <select class="form-control current-size" name="apresVaccin" #apresVaccin   (change)="getDose(apresVaccin.value)" formControlName="afterVaccineId">
+              <option [value] ='0' selected="true">Non applicable</option>
+              <option *ngFor="let stream of items | async as list" [(value)]="stream.id">{{stream.vaccineName}}</option>
             </select>
           </div>
-          <div class="form-group col-md-6">
-            <label for="site{{i+1}}">Site</label>
-            <input type="Text" min="0" class="form-control current-size" formControlName="dose" >
+          <div class="form-group col-md-5">
+            <label for="doseNumber{{i+1}}">Apres le vaccin</label>
+            <input type="number" min="0" class="form-control current-size" formControlName="afterVaccineName">
           </div>
+          <div class="form-group col-md-2">
+            <label for="minWindowWeek{{i+1}}">Apres la dose</label>
+            <select class="form-control current-size" formControlName="afterVaccineDoseId" >
+              <option [value] ='0' selected="true">Non applicable</option>
+              <option *ngFor="let val of doses" [value]="val.doseNumber">{{val.doseNumber}}</option>
+            </select>
+          </div>
+          
         </div>
         
         <div class="form-row">
-         
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-4">
+            <label for="site{{i+1}}">Site</label>
+            <input type="Text" min="0" class="form-control current-size" formControlName="dose" >
+          </div>
+          <div class="form-group col-md-4">
             <label for="dose{{i+1}}">Dose</label>
             <input type="Text" min="0" class="form-control current-size"  formControlName="site" >
           </div>
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-4">
             <label for="voie{{i+1}}">Voie</label>
             <input type="Text" min="0" class="form-control current-size"  formControlName="voie">
           </div>
@@ -76,9 +87,7 @@
           </div>
         </div>
       </nav>
-   <pre>
-     {{doses |async}}
-   </pre>
+   
   </mat-card-content>
 </mat-card>
    

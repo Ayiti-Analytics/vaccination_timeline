@@ -16,12 +16,8 @@ export class VaccinesComponent implements OnInit {
   deviceInfo = null;
   isMobile: boolean = false;
   hide: any
-  displayedColumns: string[] = ['vaccineName', 'description', 'dose'];
-  dataSource = new MatTableDataSource<Vaccine>();
   filter: string;
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+ 
   constructor(private vaccineService: VaccineService,private deviceDetectorService: DeviceDetectorService) { 
     this.deviceInfo = deviceDetectorService.getDeviceInfo();
     this.isMobile =  this.deviceDetectorService.isMobile();

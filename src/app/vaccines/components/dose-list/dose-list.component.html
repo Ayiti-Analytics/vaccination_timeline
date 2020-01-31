@@ -1,0 +1,87 @@
+<mat-card class="col-lg-10 col-md-12 col-sm-12  m-auto">
+   
+    <mat-card-content>
+    
+   <nav aria-label="breadcrumb">
+     <ol class="breadcrumb">
+       <li class="breadcrumb-item current-size"><a href="#">Accueil</a></li>
+       <li class="breadcrumb-item current-size"><a href="#">Vaccins</a></li>
+       <li class="breadcrumb-item active current-size" aria-current="page">Liste des vaccins</li>
+      </ol>
+ 
+   </nav>
+ 
+   <input  [(ngModel)] ="filter" class="form-control mb-1" placeholder="Rechercher">
+     <table class="table table-hover current-size" *ngIf="!hide">
+       <thead>
+         <tr>
+           <th scope="col">#</th>
+           <th scope="col">Nom du vaccin</th>
+           <th scope="col"># de la dose</th>
+           <th scope="col">Administration</th>
+           <th scope="col">Apres vaccin</th>
+           <th scope="col">Dose</th>
+           <th scope="col">Site /Voie</th>
+           <th scope="col">Actions</th>
+           
+ 
+         </tr>
+       </thead>
+       <tbody>
+         <tr  *ngFor="let item of items | async |filter:filter| paginate: { itemsPerPage: 10, currentPage: p }; let i =index">
+           <th scope="row">{{i+1}}</th>
+           <td>{{item.vaccineName}}</td>
+           <td>{{item.doseNumber}}</td>
+           <td>{{item.minWindowWeek}} sem - {{item.maxWindowWeek}}  sem </td>
+           <td>{{item.afterVaccineDoseId}}</td>
+           <td>{{item.dose}} </td>
+           <td>{{item.site}}/ {{item.site}}</td>
+          <td>
+           <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+             <div class="btn-group" role="group">
+                 <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle current-size" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             Actions
+           </button>
+                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                     <a class="dropdown-item current-size" [routerLink]="['/vaccines','new-vaccine', item.id]"><i class="fas fa-edit"></i> &nbsp; Editer dose</a>
+                     
+                   </div>
+             </div>
+         </div>
+          </td>
+         </tr>
+ 
+       </tbody>
+     </table>
+     <ul class="list-group" *ngIf="hide">
+       <li class="list-group-item mb-3" *ngFor="let item of items | async |filter:filter| paginate: { itemsPerPage: 10, currentPage: p }; let i =index">
+         <h6>Nom du vaccin</h6>
+         <p>{{item.vaccineName}}</p>
+         <h6># de la dose</h6>
+         <p>{{item.doseNumber}}.</p>
+         <h6>Administration</h6>
+         <p>{{item.minWindowWeek}} sem - {{item.maxWindowWeek}}  sem</p>
+         <h6>Actions</h6>
+         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+          <div class="btn-group" role="group">
+              <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle current-size" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Actions
+        </button>
+              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                  <a class="dropdown-item current-size" [routerLink]="['/vaccines','new-vaccine', item.id]"><i class="fas fa-edit"></i> &nbsp; Editer dose</a>
+                  
+                </div>
+          </div>
+      </div>
+       </li>
+       
+     </ul>
+     
+   
+    
+     <ul class="pagination col-sm-12 col-md-6">  
+       <pagination-controls (pageChange)="p = $event"></pagination-controls>  
+       </ul>  
+ 
+    </mat-card-content>
+   </mat-card>

@@ -1,6 +1,10 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { VaccineService } from '../../services/vaccine.service';
+import { Observable } from 'rxjs';
+import { Vaccine, Dose } from '../../models/vaccine';
+import { Router, ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-new-dose',
@@ -10,18 +14,35 @@ import { VaccineService } from '../../services/vaccine.service';
 })
 export class NewDoseComponent implements OnInit {
 
-  form: FormGroup
-  constructor(private fb: FormBuilder,private vaccineService: VaccineService) {
+  form: FormGroup;
+  items: Observable<any[]>;
+  vaccine: Vaccine;
+  _vaccine: Observable<any>;
+  doses: Observable<Dose[]>;
+  id: any;
+ 
+  constructor(private fb: FormBuilder,
+    private vaccineService: VaccineService,
+    private activateRoute: ActivatedRoute,
+    private router: Router,
+    private _snackBar: MatSnackBar) {
+   
+    this.vaccine = new Vaccine();
+    this.items = this.vaccineService.getVaccines();
+    this.doses =this.vaccineService.getDoseList();
+    this.activateRoute.paramMap.subscribe(params => {
+      if (params.get('id')) {
+        this._vaccine = this.vaccineService.getVaccine(params.get('id'));
+        this.id = params.get('id');
+        console.log('Hewewrr '+this.id);
+      }
+    });
     this.form = fb.group({
-      id: ['',],
-      idVaccine: ['',],
+      
+     
       vaccineName: [
         '',
-        [
-          Validators.required,
-          Validators.minLength(2),
-          Validators.maxLength(30)
-        ]
+        
       ],
       doseNumber: [
         '',
@@ -45,14 +66,8 @@ export class NewDoseComponent implements OnInit {
          
         ]
       ],
-      afterVaccineName: [
-        'Non applicable',
-        [
-          Validators.required,
-         
-        ]
-      ],
-      afterVaccineDoseId: [
+      
+       afterVaccineDoseId: [
         'Non applicable',
         [
           Validators.required,
@@ -89,6 +104,24 @@ export class NewDoseComponent implements OnInit {
     });
   }
   ngOnInit() {
+    this._vaccine.subscribe(value =>{
+      console.log(value);
+      this.vaccine = value;
+     
+    })
   }
 
-}
+ 
+  save(){
+     this.form.controls.vaccineName.setValue(this.vaccine.vaccineName);
+     
+     this.vaccineService.addDose(JSON.parse(JSON.stringify(this.form.value))).then(values =>{
+       this._snackBar.open('Sauvegarde fait avec succes','success', {
+         duration: 3000
+       });
+       this.router.navigate(['vaccines']);
+     });
+    }
+  
+    
+   }

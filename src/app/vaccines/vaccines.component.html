@@ -21,7 +21,6 @@
           <th scope="col">#</th>
           <th scope="col">Nom du vaccin</th>
           <th scope="col">Description</th>
-          <th scope="col">Nombre de doses</th>
           <th scope="col">Actions</th>
           
 
@@ -32,7 +31,7 @@
           <th scope="row">{{i+1}}</th>
           <td>{{item.vaccineName}}</td>
           <td>{{item.description | slice:0:100}} ...</td>
-          <td>{{item.dose}} </td>
+         
          <td>
           <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
             <div class="btn-group" role="group">
@@ -56,8 +55,7 @@
         <p>{{item.vaccineName}}</p>
         <h6>Description</h6>
         <p>{{item.description| slice:0:50}} ...</p>
-        <h6>Nombre de doses</h6>
-        <p>{{item.dose}}</p>
+        
         <h6>Actions</h6>
         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
           <div class="btn-group" role="group">
